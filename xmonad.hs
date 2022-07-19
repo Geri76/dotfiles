@@ -15,6 +15,10 @@ import qualified Data.Map        as M
 import Control.Monad.State
 import XMonad.Core
 
+-- VOLUME CONTROLS
+import Graphics.X11.ExtraTypes.XF86
+
+
 -- The preferred terminal program, which is used in a binding below and by
 -- certain contrib modules.
 --
@@ -62,7 +66,10 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
     -- launch a terminal
     [ ((modm,               xK_Return), spawn $ XMonad.terminal conf)
-
+    -- VOLUME CONTROLS
+    , ((0, xF86XK_AudioLowerVolume   ), spawn "amixer set -c 1 Master 2%-"    )
+    , ((0, xF86XK_AudioRaiseVolume   ), spawn "amixer set -c 1 Master 2%+"    )
+    , ((0, xF86XK_AudioMute          ), spawn "amixer set -c 1 Master toggle" )
     -- launch dmenu
     , ((modm,               xK_p     ), spawn "dmenu_run")
 
@@ -247,8 +254,8 @@ myLogHook = return ()
 
 myStartupHook :: X ()
 myStartupHook = do
-	spawnOnce "nitrogen --restore"
-	spawnOnce "compton"
+  spawn "nitrogen --restore"
+  spawn "compton"
 
 ------------------------------------------------------------------------
 -- Now run xmonad with all the defaults we set up.
