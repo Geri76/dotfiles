@@ -2,8 +2,8 @@ Config { font = "xft:Ubuntu Mono:pixelsize=16:antialias=true"
        , additionalFonts = []
        , borderColor = "black"
        , border = TopB
-       , bgColor = "black"
-       , fgColor = "gray"
+       , bgColor = "#282c34"
+       , fgColor = "#ff6c6b"
        , alpha = 255
        , position = Top
        , textOffset = -1
@@ -16,15 +16,15 @@ Config { font = "xft:Ubuntu Mono:pixelsize=16:antialias=true"
        , allDesktops = True
        , overrideRedirect = True
        , commands = [ 
-			Run Cpu ["-L","3","-H","50","--normal","green","--high","red"] 10,
-		      	Run Memory ["-t","Mem: <usedratio>%"] 10,
 		      	Run Date "%a %b %_d %Y" "date" 10,
 			Run Date "%H:%M:%S" "time" 10,
+			Run Com "cat" ["/sys/class/power_supply/BAT0/capacity"] "battery" 10,
+			Run Com "cat" ["/sys/class/power_supply/BAT0/status"] "battery_status" 10,
 			Run UnsafeStdinReader
                     ]
 
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%UnsafeStdinReader% | %cpu% | %memory% }\
-                    \{ <fc=#ee9a00>%date%</fc> | <fc=#ee9a00>%time%</fc>"
+       , template = "%UnsafeStdinReader%}\
+                    \{<fc=#82aaff>%battery% - %battery_status%</fc> | <fc=#82aaff>%date%</fc> | <fc=#82aaff>%time%</fc>"
        }
