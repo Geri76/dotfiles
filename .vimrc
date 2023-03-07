@@ -12,7 +12,7 @@ call plug#end()
 
 :set number
 :set smartindent
-:set tabstop=3
+:set tabstop=4
 
 :colorscheme dracula
 
