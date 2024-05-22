@@ -35,7 +35,7 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 exec --no-startup-id nm-applet
 
 exec /home/geri/.screenlayout/default.sh
-exec nitrogen --restore
+exec --no-startup-id nitrogen --restore
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
@@ -184,7 +184,8 @@ mode "resize" {
         bindsym $mod+r mode "default"
 }
 
-client.focused #308687 #30875C #111111 #2e9ef4 #308687
+client.focused #d69821 #d69821 #292829 #d69821 #d69821
+client.focused_inactive #292829 #292829 #d69812 #292829 #292829
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
@@ -194,8 +195,8 @@ bar {
 	font pango:Fira Code Bold 10
 
 	colors {
-		statusline #308687
-		separator #30875C
+		statusline #d69821
+		separator #cd251d
 	}
 
 	bindsym button3 exec --no-startup-id dmenu_run
